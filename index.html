@@ -457,7 +457,6 @@
     </style>
 </head>
 <body id="main-body" class="page-blocked">
-    <!-- Cookie Consent Popup -->
     <div id="cookie-overlay" class="cookie-overlay">
         <div class="cookie-popup">
             <h3>We Respect Your Privacy</h3>
@@ -473,7 +472,7 @@
 
     <header>
         <nav class="container">
-            <a href="#" class="logo">PayExpressMyBills</a>
+            <a href="#" class="logo" onclick="showHome()">PayExpressMyBills</a>
             <ul class="nav-links">
                 <li><a href="#" onclick="showHome()">Home</a></li>
                 <li><a href="#" onclick="showServices()">Services</a></li>
@@ -769,3 +768,124 @@
                 • Use the service only for lawful purposes<br>
                 • Not share your account credentials with others<br>
                 • Notify us immediately of any unauthorized use of your account<br>
+                • Keep your contact and payment information up to date</p>
+                
+                <h3>Prohibited Conduct</h3>
+                <p>You may not use our service for any illegal or unauthorized purpose, including but not limited to fraud, money laundering, or funding of illegal activities. Violation of these terms may result in immediate termination of your account.</p>
+                
+                <h3>Limitation of Liability</h3>
+                <p>PayExpressMyBills is not liable for any damages resulting from delayed or failed payments, unless caused by our gross negligence. Our liability is limited to the amount of the transaction in question.</p>
+                
+                <h3>Governing Law</h3>
+                <p>These Terms of Service are governed by the laws of the State of Illinois, without regard to its conflict of law provisions.</p>
+                
+                <h3>Changes to Terms</h3>
+                <p>We may modify these terms at any time. We will provide notice of significant changes by posting the updated terms on our website. Your continued use of the service after such changes constitutes your acceptance of the new terms.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" onclick="showHome()">Home</a>
+                <a href="#" onclick="showServices()">Services</a>
+                <a href="#" onclick="showAbout()">About Us</a>
+                <a href="#" onclick="showContact()">Contact</a>
+                <a href="#" onclick="showPrivacy()">Privacy Policy</a>
+                <a href="#" onclick="showTerms()">Terms of Service</a>
+            </div>
+            <p>&copy; 2020-2025 PayExpressMyBills. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Cookie Consent Functions ---
+        const cookieOverlay = document.getElementById('cookie-overlay');
+        const mainBody = document.getElementById('main-body');
+
+        function acceptCookies() {
+            // Hide the cookie popup
+            cookieOverlay.classList.add('hidden');
+            // Remove the class that blocks page interaction
+            mainBody.classList.remove('page-blocked');
+            
+            // Optional: Set a cookie to remember the user's choice
+            // document.cookie = "cookie_consent=accepted; max-age=31536000; path=/";
+        }
+
+        function declineCookies() {
+            // Hide the cookie popup
+            cookieOverlay.classList.add('hidden');
+            // Remove the class that blocks page interaction
+            mainBody.classList.remove('page-blocked');
+
+            // Optional: Set a cookie to remember the user's choice
+            // document.cookie = "cookie_consent=declined; max-age=31536000; path=/";
+        }
+
+        // --- Page Navigation Functions ---
+        const pages = document.querySelectorAll('.page-section');
+        const homePage = document.getElementById('home-page');
+
+        function hideAllPages() {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            homePage.style.display = 'none';
+        }
+
+        function showPage(pageId) {
+            hideAllPages();
+            const pageToShow = document.getElementById(pageId);
+            if(pageToShow) {
+                pageToShow.classList.add('active');
+            }
+        }
+
+        function showHome() {
+            hideAllPages();
+            homePage.style.display = 'block';
+        }
+
+        function showServices() {
+            showPage('services-page');
+        }
+
+        function showAbout() {
+            showPage('about-page');
+        }
+
+        function showContact() {
+            showPage('contact-page');
+        }
+
+        function showPrivacy() {
+            showPage('privacy-page');
+        }
+        
+        function showTerms() {
+            showPage('terms-page');
+        }
+
+        function showLogin() {
+            showPage('login-page');
+        }
+
+        // Function to show privacy page from cookie banner
+        function showPrivacyFromCookie() {
+            acceptCookies();
+            showPrivacy();
+        }
+
+        // --- Login Form Handler ---
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent the form from submitting
+            alert('Login functionality is for demonstration purposes.');
+            // Here you would typically handle the form data
+        }
+
+    </script>
+
+</body>
+</html>
