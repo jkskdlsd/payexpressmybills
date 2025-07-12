@@ -367,6 +367,8 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             min-width: 150px;
+            position: relative;
+            z-index: 10001;
         }
 
         .cookie-btn.accept {
@@ -392,14 +394,14 @@
         }
 
         .page-blocked {
-            pointer-events: none;
-            user-select: none;
             overflow: hidden;
         }
 
-        .page-blocked * {
-            pointer-events: none !important;
-            user-select: none !important;
+        .page-blocked main,
+        .page-blocked header,
+        .page-blocked footer {
+            pointer-events: none;
+            user-select: none;
         }
 
         @keyframes fadeIn {
@@ -764,9 +766,4 @@
                 • Use the service only for lawful purposes<br>
                 • Not share your account credentials with others<br>
                 • Notify us immediately of any unauthorized use of your account<br>
-                • Maintain sufficient funds for scheduled payments</p>
-                
-                <h3>Prohibited Activities</h3>
-                <p>You may not use our services to:</p>
-                <p>• Make fraudulent or unauthorized payments<br>
-                • Viol
+                • Maintain
