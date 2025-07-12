@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Express My Bills - Secure Online Bill Payment Service</title>
+    <meta name="description" content="Simplify your financial life with our secure online bill payment service. Pay utilities, credit cards, loans, and more from one convenient platform.">
+    <meta name="keywords" content="bill payment, online bills, pay utilities, financial management, secure payments">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 2rem 0;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .features {
+            background: white;
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .services {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            margin: 2rem 0;
+            color: white;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .login-section {
+            background: white;
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .page-section {
+            background: white;
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            margin: 2rem 0;
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">PayExpressMyBills</a>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showHome()">Home</a></li>
+                <li><a href="#" onclick="showServices()">Services</a></li>
+                <li><a href="#" onclick="showAbout()">About</a></li>
+                <li><a href="#" onclick="showContact()">Contact</a></li>
+                <li><a href="#" onclick="showPrivacy()">Privacy</a></li>
+                <li><a href="#" onclick="showTerms()">Terms</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-secondary" onclick="showLogin()">Login</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div id="home-page">
+            <section class="hero">
+                <h1>Simplify Your Bill Payments</h1>
+                <p>Pay all your bills from one secure platform. Save time, avoid late fees, and take control of your finances with our comprehensive bill payment service.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary" onclick="showLogin()">Get Started</a>
+                    <a href="#" class="btn btn-secondary" onclick="showServices()">Learn More</a>
+                </div>
+            </section>
+
+            <section class="features">
+                <h2>Why Choose PayExpressMyBills?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Bank-Level Security</h3>
+                        <p>Your financial information is protected with 256-bit SSL encryption and multi-factor authentication.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Instant Payments</h3>
+                        <p>Process payments instantly to avoid late fees and keep your accounts in good standing.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Mobile Friendly</h3>
+                        <p>Access your account anywhere, anytime from your smartphone, tablet, or computer.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Smart Reminders</h3>
+                        <p>Never miss a payment with customizable alerts and automatic scheduling options.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h3>Save Money</h3>
+                        <p>Avoid late fees, overdraft charges, and stamps with our efficient payment system.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Payment History</h3>
+                        <p>Track all your payments with detailed reports and transaction history.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="services">
+                <h2>Supported Bill Types</h2>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <h3>Utilities</h3>
+                        <p>Electric, gas, water, trash, and internet service providers</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Credit Cards</h3>
+                        <p>All major credit card companies and store cards</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Loans</h3>
+                        <p>Auto loans, personal loans, and student loans</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Insurance</h3>
+                        <p>Auto, home, life, and health insurance premiums</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Subscriptions</h3>
+                        <p>Streaming services, software, and membership fees</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Government</h3>
+                        <p>Tax payments, DMV fees, and municipal services</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="login-page" class="page-section">
+            <section class="login-section">
+                <h2>Login to Your Account</h2>
+                <p>Access your secure bill payment dashboard</p>
+                <form class="login-form" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                    </div>
+                    <div class="form-group">
+                        <p><a href="#" style="color: #667eea;">Forgot your password?</a></p>
+                        <p>Don't have an account? <a href="#" style="color: #667eea;">Sign up here</a></p>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <div id="services-page" class="page-section">
+            <section class="login-section">
+                <h2>Our Services</h2>
+                <h3>Comprehensive Bill Payment Solutions</h3>
+                <p>At PayExpressMyBills, we offer a complete suite of financial services designed to simplify your bill management experience. Our platform serves as your one-stop solution for all payment needs.</p>
+                
+                <h3>Core Services</h3>
+                <p><strong>Online Bill Payment:</strong> Pay thousands of billers across the United States with just a few clicks. Our extensive network includes major utilities, credit card companies, loan servicers, and service providers.</p>
+                
+                <p><strong>Automatic Bill Pay:</strong> Set up recurring payments for your regular bills and never worry about missing a due date again. Our system automatically processes your payments on your specified schedule.</p>
+                
+                <p><strong>Bill Reminder Service:</strong> Receive email and text notifications before your bills are due. Customize your reminder preferences to stay on top of your financial obligations.</p>
+                
+                <p><strong>Payment Scheduling:</strong> Schedule payments up to 30 days in advance. Perfect for budgeting and cash flow management.</p>
+                
+                <h3>Additional Features</h3>
+                <p><strong>Account Management:</strong> View and manage all your payees from one convenient dashboard. Add, edit, or remove billers as needed.</p>
+                
+                <p><strong>Transaction History:</strong> Access detailed records of all your payments with search and filtering capabilities. Export reports for tax purposes or personal record-keeping.</p>
+                
+                <p><strong>Mobile Access:</strong> Our responsive design ensures you can manage your bills from any device, anywhere, anytime.</p>
+                
+                <p><strong>Customer Support:</strong> Our dedicated support team is available to help you with any questions or issues you may encounter.</p>
+                
+                <h3>Security & Reliability</h3>
+                <p>We employ bank-level security measures to protect your personal and financial information. All data is encrypted using industry-standard protocols, and we never store your bank account information on our servers.</p>
+            </section>
+        </div>
+
+        <div id="about-page" class="page-section">
+            <section class="login-section">
+                <h2>About PayExpressMyBills</h2>
+                <h3>Your Trusted Financial Partner</h3>
+                <p>Founded in 2020, PayExpressMyBills has been at the forefront of digital payment solutions, helping millions of Americans simplify their financial lives. We understand that managing multiple bills can be overwhelming, which is why we created a platform that brings all your payments together in one secure, easy-to-use interface.</p>
+                
+                <h3>Our Mission</h3>
+                <p>To empower individuals and families to take control of their finances by providing secure, convenient, and reliable bill payment services. We believe that everyone deserves access to simple, affordable financial tools that make life easier.</p>
+                
+                <h3>Our Values</h3>
+                <p><strong>Security First:</strong> We prioritize the protection of your personal and financial information above all else. Our security measures exceed industry standards.</p>
+                
+                <p><strong>Customer-Centric:</strong> Every feature we develop is designed with our customers' needs in mind. We listen to feedback and continuously improve our services.</p>
+                
+                <p><strong>Transparency:</strong> We believe in clear, honest communication about our services, fees, and policies. No hidden charges, no surprises.</p>
+                
+                <p><strong>Innovation:</strong> We leverage cutting-edge technology to provide the best possible user experience while maintaining the highest security standards.</p>
+                
+                <h3>Our Team</h3>
+                <p>Our team consists of experienced financial technology professionals, cybersecurity experts, and customer service specialists who are passionate about helping you succeed financially. We're based in Chicago, Illinois, and serve customers across the United States.</p>
+                
+                <h3>Industry Recognition</h3>
+                <p>PayExpressMyBills has been recognized by leading financial publications for our innovative approach to bill payment services. We maintain partnerships with major financial institutions and are compliant with all relevant financial regulations.</p>
+                
+                <h3>Community Impact</h3>
+                <p>We're committed to financial literacy and regularly contribute to community education programs. We believe that everyone should have access to the tools and knowledge needed to make informed financial decisions.</p>
+            </section>
+        </div>
+
+        <div id="contact-page" class="page-section">
+            <section class="login-section">
+                <h2>Contact Us</h2>
+                <h3>We're Here to Help</h3>
+                <p>Have questions about our services? Need assistance with your account? Our customer support team is ready to help you with any questions or concerns you may have.</p>
+                
+                <h3>Customer Support</h3>
+                <p><strong>Phone:</strong> 1-800-PAY-BILLS (1-800-729-2455)<br>
+                <strong>Hours:</strong> Monday - Friday: 8:00 AM - 8:00 PM EST<br>
+                Saturday: 9:00 AM - 5:00 PM EST<br>
+                Sunday: Closed</p>
+                
+                <p><strong>Email:</strong> support@payexpressmybills.com<br>
+                <strong>Response Time:</strong> Within 24 hours</p>
+                
+                <h3>Business Inquiries</h3>
+                <p><strong>Email:</strong> business@payexpressmybills.com<br>
+                <strong>Phone:</strong> 1-800-PAY-BUSI (1-800-729-2874)</p>
+                
+                <h3>Mailing Address</h3>
+                <p>PayExpressMyBills Customer Service<br>
+                123 Financial Plaza<br>
+                Chicago, IL 60601<br>
+                United States</p>
+                
+                <h3>Technical Support</h3>
+                <p>Experiencing technical difficulties? Our IT support team can help resolve any issues you're experiencing with our platform.</p>
+                
+                <p><strong>Email:</strong> tech@payexpressmybills.com<br>
+                <strong>Live Chat:</strong> Available 24/7 through your account dashboard</p>
+                
+                <h3>Frequently Asked Questions</h3>
+                <p><strong>Q: How long does it take for payments to process?</strong><br>
+                A: Most payments are processed within 1-2 business days. Some billers may take up to 3-5 business days.</p>
+                
+                <p><strong>Q: Are there fees for using PayExpressMyBills?</strong><br>
+                A: Basic bill payment services are free. Premium features may have associated fees, which are clearly disclosed.</p>
+                
+                <p><strong>Q: Is my information secure?</strong><br>
+                A: Yes, we use bank-level encryption and security measures to protect all your personal and financial information.</p>
+                
+                <p><strong>Q: Can I schedule recurring payments?</strong><br>
+                A: Absolutely! You can set up automatic payments for any of your bills through your account dashboard.</p>
+            </section>
+        </div>
+
+        <div id="privacy-page" class="page-section">
+            <section class="login-section">
+                <h2>Privacy Policy</h2>
+                <p><strong>Last Updated:</strong> July 12, 2025</p>
+                
+                <h3>Information We Collect</h3>
+                <p>We collect information you provide directly to us, such as when you create an account, make a payment, or contact us for support. This may include your name, email address, phone number, billing address, and payment information.</p>
+                
+                <p>We also collect information automatically when you use our services, including your IP address, browser type, operating system, and usage patterns. This helps us improve our services and ensure security.</p>
+                
+                <h3>How We Use Your Information</h3>
+                <p>We use the information we collect to:</p>
+                <p>• Process your bill payments and manage your account<br>
+                • Provide customer support and respond to your inquiries<br>
+                • Send you important updates about your account and our services<br>
+                • Prevent fraud and ensure the security of our platform<br>
+                • Improve our services and develop new features</p>
+                
+                <h3>Information Sharing</h3>
+                <p>We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following circumstances:</p>
+                <p>• With your consent or at your direction<br>
+                • To process payments to your billers<br>
+                • With service providers who help us operate our platform<br>
+                • To comply with legal obligations or protect our rights</p>
+                
+                <h3>Data Security</h3>
+                <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. This includes encryption, secure servers, and regular security audits.</p>
+                
+                <h3>Data Retention</h3>
+                <p>We retain your personal information for as long as necessary to provide our services and comply with legal obligations. You may request deletion of your account and associated data at any time.</p>
+                
+                <h3>Your Rights</h3>
+                <p>You have the right to access, update, or delete your personal information. You can also opt out of marketing communications and request a copy of the data we have about you.</p>
+                
+                <h3>Cookies and Tracking</h3>
+                <p>We use cookies and similar technologies to enhance your experience, analyze usage patterns, and provide personalized content. You can control cookie preferences through your browser settings.</p>
+                
+                <h3>Third-Party Links</h3>
+                <p>Our service may contain links to third-party websites. We are not responsible for the privacy practices of these sites and encourage you to review their privacy policies.</p>
+                
+                <h3>Changes to This Policy</h3>
+                <p>We may update this privacy policy from time to time. We will notify you of any significant changes by posting the new policy on our website and updating the "Last Updated" date.</p>
+                
+                <h3>Contact Information</h3>
+                <p>If you have questions about this privacy policy, please contact us at privacy@payexpressmybills.com or 1-800-PAY-BILLS.</p>
+            </section>
+        </div>
+
+        <div id="terms-page" class="page-section">
+            <section class="login-section">
+                <h2>Terms of Service</h2>
+                <p><strong>Last Updated:</strong> July 12, 2025</p>
+                
+                <h3>Agreement to Terms</h3>
+                <p>By accessing or using PayExpressMyBills services, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms, please do not use our services.</p>
+                
+                <h3>Description of Service</h3>
+                <p>PayExpressMyBills is an online bill payment service that allows you to pay bills electronically to various billers. We act as an intermediary between you and your billers to facilitate these payments.</p>
+                
+                <h3>Account Registration</h3>
+                <p>To use our services, you must create an account and provide accurate, complete information. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
+                
+                <h3>Payment Processing</h3>
+                <p>When you authorize a payment, we will process it according to your instructions. Payments are typically processed within 1-2 business days, though some may take longer depending on the biller. You are responsible for ensuring sufficient funds are available in your account.</p>
+                
+                <h3>Fees and Charges</h3>
+                <p>Basic bill payment services are provided free of charge. Premium features may be subject to fees, which will be clearly disclosed before you authorize any charges. You are responsible for any fees charged by your bank or financial institution.</p>
+                
+                <h3>User Responsibilities</h3>
+                <p>You agree to:</p>
+                <p>• Provide accurate and complete information<br>
+                • Use the service only for lawful purposes<br>
+                • Not share your account credentials with others<br>
+                • Notify us immediately of any unauthorized use of your account<br>
+                • Maintain sufficient funds for scheduled payments</p>
+                
+                <h3>Prohibited Activities</h3>
+                <p>You may not use our services to:</p>
+                <p>• Make fraudulent or unauthorized payments<br>
+                • Violate any applicable laws or regulations<br>
+                • Interfere with the operation of our platform<br>
+                • Attempt to gain unauthorized access to our systems<br>
+                • Use the service for any illegal or harmful activities</p>
+                
+                <h3>Service Availability</h3>
+                <p>While we strive to provide continuous service, we do not guarantee that our platform will be available at all times. We may suspend or terminate service for maintenance, security, or other operational reasons.</p>
+                
+                <h3>Liability Limitations</h3>
+                <p>Our liability is limited to the maximum extent permitted by law. We are not responsible for delays, errors, or failures caused by circumstances beyond our reasonable control, including but not limited to acts of nature, government actions, or third-party failures.</p>
+                
+                <h3>Indemnification</h3>
+                <p>You agree to indemnify and hold us harmless from any claims, damages, or expenses arising from your use of our services or violation of these terms.</p>
+                
+                <h3>Termination</h3>
+                <p>We may terminate your account at any time for violation of these terms or for any other reason with appropriate notice. You may terminate your account at any time by contacting customer support.</p>
+                
+                <h3>Changes to Terms</h3>
+                <p>We reserve the right to modify these terms at any time. We will notify you of significant changes and your continued use of the service constitutes acceptance of the modified terms.</p>
+                
+                <h3>Governing Law</h3>
+                <p>These terms are governed by the laws of the State of Illinois and the United States. Any disputes will be resolved in the courts of Illinois.</p>
+                
+                <h3>Contact Information</h3>
+                <p>For questions about these terms, please contact us at legal@payexpressmybills.com or 1-800-PAY-BILLS.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" onclick="showHome()">Home</a>
+                <a href="#" onclick="showServices()">Services</a>
+                <a href="#" onclick="showAbout()">About</a>
+                <a href="#" onclick="showContact()">Contact</a>
+                <a href="#" onclick="showPrivacy()">Privacy Policy</a>
+                <a href="#" onclick="showTerms()">Terms of Service</a>
+            </div>
+            <p>&copy; 2025 PayExpressMyBills. All rights reserved. | Secure Bill Payment Services</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functions
+        function showHome() {
+            hideAllPages();
+            document.getElementById('home-page').style.display = 'block';
+        }
+
+        function showLogin() {
+            hideAllPages();
+            document.getElementById('login-page').classList.add('active');
+        }
+
+        function showServices() {
+            hideAllPages();
+            document.getElementById('services-page').classList.add('active');
+        }
+
+        function showAbout() {
+            hideAllPages();
+            document.getElementById('about-page').classList.add('active');
+        }
+
+        function showContact() {
+            hideAllPages();
+            document.getElementById('contact-page').classList.add('active');
+        }
+
+        function showPrivacy() {
+            hideAllPages();
+            document.getElementById('privacy-page').classList.add('active');
+        }
+
+        function showTerms() {
+            hideAllPages();
+            document.getElementById('terms-page').classList.add('active');
+        }
+
+        function hideAllPages() {
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById('home-page').style.display = 'none';
+        }
+
+        // Login form handler
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation
+            if (email && password) {
+                alert('Login functionality would be implemented here. This is a demo website.');
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            showHome();
+        });
+    </script>
+</body>
+</html>
